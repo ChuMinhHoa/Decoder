@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColorSlot
   data: {r: 0, g: 0, b: 0, a: 0}
+  colorDefault: {r: 0.42352942, g: 0.42352942, b: 0.42352942, a: 1}
   objHighlight: {fileID: 7133364140885295112}
   spriteColor: {fileID: 6423012817023464516}
 --- !u!1 &1201854274018032113
