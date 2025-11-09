@@ -1,6 +1,7 @@
 // csharp
 // File: `Assets/BaseGame/Scripts/Core/Singleton.cs`
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
@@ -11,8 +12,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     /// <summary>
     /// Override to control whether the singleton GameObject should persist across scenes.
     /// Default: true
-    /// </summary>
-    protected virtual bool DontDestroyOnLoadEnabled => true;
+    public bool dontDestroyOnLoadEnabled;
 
     public static T Instance
     {
@@ -35,7 +35,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
                     var go = new GameObject(typeof(T).Name);
                     _instance = go.AddComponent<T>();
                     var singleton = _instance as Singleton<T>;
-                    if (singleton != null && singleton.DontDestroyOnLoadEnabled)
+                    if (singleton != null && singleton.dontDestroyOnLoadEnabled)
                         Object.DontDestroyOnLoad(go);
                 }
 
@@ -49,7 +49,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         if (_instance == null)
         {
             _instance = this as T;
-            if (DontDestroyOnLoadEnabled)
+            if (dontDestroyOnLoadEnabled)
                 Object.DontDestroyOnLoad(gameObject);
         }
         else if (_instance != this)

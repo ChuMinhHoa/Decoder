@@ -1,0 +1,142 @@
+[
+  {
+    "level": 1,
+    "difficulty": "Easy",
+    "colorShowFirst": ["E17179", "79E4A1", "F1BB6C", "65BEE6"],
+    "colorSecret": ["E17179", "79E4A1", "F1BB6C", "65BEE6"],
+    "colorInLevel": ["E17179", "79E4A1", "F1BB6C", "65BEE6"]
+  },
+  {
+    "level": 2,
+    "difficulty": "Easy",
+    "colorShowFirst": ["E17179", "F1BB6C", "79E4A1", "65BEE6"],
+    "colorSecret": ["79E4A1", "E17179", "65BEE6", "F1BB6C"],
+    "colorInLevel": ["E17179", "79E4A1", "F1BB6C", "65BEE6"]
+  },
+  {
+    "level": 3,
+    "difficulty": "Normal",
+    "colorShowFirst": ["79E4A1", "F1BB6C", "65BEE6", "E17179"],
+    "colorSecret": ["65BEE6", "E17179", "79E4A1", "F1BB6C"],
+    "colorInLevel": ["E17179", "79E4A1", "F1BB6C", "65BEE6"]
+  },
+  {
+    "level": 4,
+    "difficulty": "Normal",
+    "colorShowFirst": ["E17179", "65BEE6", "F1BB6C", "79E4A1"],
+    "colorSecret": ["F1BB6C", "E17179", "79E4A1", "65BEE6"],
+    "colorInLevel": ["E17179", "79E4A1", "F1BB6C", "65BEE6"]
+  },
+  {
+    "level": 5,
+    "difficulty": "Hard",
+    "colorShowFirst": ["65BEE6", "E17179", "F1BB6C", "79E4A1"],
+    "colorSecret": ["79E4A1", "65BEE6", "E17179", "F1BB6C"],
+    "colorInLevel": ["E17179", "79E4A1", "F1BB6C", "65BEE6"]
+  },
+  {
+    "level": 6,
+    "difficulty": "Hard",
+    "colorShowFirst": ["F1BB6C", "79E4A1", "65BEE6", "E17179"],
+    "colorSecret": ["E17179", "F1BB6C", "65BEE6", "79E4A1"],
+    "colorInLevel": ["E17179", "79E4A1", "F1BB6C", "65BEE6"]
+  },
+  {
+    "level": 7,
+    "difficulty": "Hard",
+    "colorShowFirst": ["79E4A1", "65BEE6", "E17179", "F1BB6C"],
+    "colorSecret": ["65BEE6", "F1BB6C", "E17179", "79E4A1"],
+    "colorInLevel": ["E17179", "79E4A1", "F1BB6C", "65BEE6"]
+  },
+  {
+    "level": 8,
+    "difficulty": "Very Hard",
+    "colorShowFirst": ["E17179", "F1BB6C", "79E4A1", "65BEE6"],
+    "colorSecret": ["F1BB6C", "79E4A1", "E17179", "65BEE6"],
+    "colorInLevel": ["E17179", "79E4A1", "F1BB6C", "65BEE6"]
+  },
+  {
+    "level": 9,
+    "difficulty": "Very Hard",
+    "colorShowFirst": ["79E4A1", "65BEE6", "E17179", "F1BB6C"],
+    "colorSecret": ["79E4A1", "F1BB6C", "65BEE6", "E17179"],
+    "colorInLevel": ["E17179", "79E4A1", "F1BB6C", "65BEE6"]
+  },
+  {
+    "level": 10,
+    "difficulty": "Expert",
+    "colorShowFirst": ["65BEE6", "E17179", "79E4A1", "F1BB6C"],
+    "colorSecret": ["F1BB6C", "65BEE6", "E17179", "79E4A1"],
+    "colorInLevel": ["E17179", "79E4A1", "F1BB6C", "65BEE6"]
+  },
+  {
+    "level": 11,
+    "difficulty": "Normal",
+    "colorShowFirst": ["E17179", "79E4A1", "EEE578", "65BEE6"],
+    "colorSecret": ["E17179", "79E4A1", "F1BB6C", "65BEE6"],
+    "colorInLevel": ["E17179", "79E4A1", "F1BB6C", "65BEE6"]
+  },
+  {
+    "level": 12,
+    "difficulty": "Normal",
+    "colorShowFirst": ["EEE578", "BF80EA", "E17179", "65BEE6"],
+    "colorSecret": ["79E4A1", "65BEE6", "E17179", "F1BB6C"],
+    "colorInLevel": ["E17179", "79E4A1", "F1BB6C", "65BEE6"]
+  },
+  {
+    "level": 13,
+    "difficulty": "Normal",
+    "colorShowFirst": ["BF80EA", "79E4A1", "F1BB6C", "92E8EB"],
+    "colorSecret": ["F1BB6C", "E17179", "79E4A1", "65BEE6"],
+    "colorInLevel": ["E17179", "79E4A1", "F1BB6C", "65BEE6"]
+  },
+  {
+    "level": 14,
+    "difficulty": "Hard",
+    "colorShowFirst": ["EEE578", "F1BB6C", "79E4A1", "92E8EB"],
+    "colorSecret": ["65BEE6", "79E4A1", "E17179", "F1BB6C"],
+    "colorInLevel": ["E17179", "79E4A1", "F1BB6C", "65BEE6"]
+  },
+  {
+    "level": 15,
+    "difficulty": "Hard",
+    "colorShowFirst": ["BF80EA", "EEE578", "E17179", "79E4A1"],
+    "colorSecret": ["F1BB6C", "65BEE6", "79E4A1", "E17179"],
+    "colorInLevel": ["E17179", "79E4A1", "F1BB6C", "65BEE6"]
+  },
+  {
+    "level": 16,
+    "difficulty": "Hard",
+    "colorShowFirst": ["92E8EB", "79E4A1", "EEE578", "F1BB6C"],
+    "colorSecret": ["79E4A1", "E17179", "F1BB6C", "65BEE6"],
+    "colorInLevel": ["E17179", "79E4A1", "F1BB6C", "65BEE6"]
+  },
+  {
+    "level": 17,
+    "difficulty": "Very Hard",
+    "colorShowFirst": ["BF80EA", "EEE578", "E17179", "65BEE6"],
+    "colorSecret": ["65BEE6", "F1BB6C", "E17179", "79E4A1"],
+    "colorInLevel": ["E17179", "79E4A1", "F1BB6C", "65BEE6"]
+  },
+  {
+    "level": 18,
+    "difficulty": "Very Hard",
+    "colorShowFirst": ["EEE578", "BF80EA", "92E8EB", "E17179"],
+    "colorSecret": ["79E4A1", "65BEE6", "E17179", "F1BB6C"],
+    "colorInLevel": ["E17179", "79E4A1", "F1BB6C", "65BEE6"]
+  },
+  {
+    "level": 19,
+    "difficulty": "Very Hard",
+    "colorShowFirst": ["79E4A1", "EEE578", "BF80EA", "65BEE6"],
+    "colorSecret": ["E17179", "79E4A1", "65BEE6", "F1BB6C"],
+    "colorInLevel": ["E17179", "79E4A1", "F1BB6C", "65BEE6"]
+  },
+  {
+    "level": 20,
+    "difficulty": "Expert",
+    "colorShowFirst": ["EEE578", "BF80EA", "92E8EB", "79E4A1"],
+    "colorSecret": ["65BEE6", "F1BB6C", "E17179", "79E4A1"],
+    "colorInLevel": ["E17179", "79E4A1", "F1BB6C", "65BEE6"]
+  }
+]

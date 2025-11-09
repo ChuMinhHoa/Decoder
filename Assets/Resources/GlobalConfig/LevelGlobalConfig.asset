@@ -14,24 +14,102 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelGlobalConfig
   levelConfigs:
   - level: 1
-    time: -1
-    totalColor: 4
+    time: 0
+    totalColor: 0
     difficult: 0
-    colorFirstHint:
-    - {r: 0.88235295, g: 0.44313726, b: 0.4745098, a: 1}
-    - {r: 0.4745098, g: 0.89411765, b: 0.6313726, a: 1}
-    - {r: 0.94509804, g: 0.73333335, b: 0.42352942, a: 1}
-    - {r: 0.39607844, g: 0.74509805, b: 0.9019608, a: 1}
-    colorSecret:
-    - {r: 0.88235295, g: 0.44313726, b: 0.4745098, a: 1}
-    - {r: 0.39607844, g: 0.74509805, b: 0.9019608, a: 1}
-    - {r: 0.4745098, g: 0.89411765, b: 0.6313726, a: 1}
-    - {r: 0.94509804, g: 0.73333335, b: 0.42352942, a: 1}
-  listColors:
-  - {r: 0.882353, g: 0.4431373, b: 0.47450984, a: 1}
-  - {r: 0.47450984, g: 0.8941177, b: 0.6313726, a: 1}
-  - {r: 0.9450981, g: 0.73333335, b: 0.42352945, a: 1}
-  - {r: 0.39607847, g: 0.74509805, b: 0.90196085, a: 1}
-  - {r: 0.9333334, g: 0.8980393, b: 0.47058827, a: 1}
-  - {r: 0.7490196, g: 0.5019608, b: 0.9176471, a: 1}
-  - {r: 0.57254905, g: 0.909804, b: 0.9215687, a: 1}
+    levelData: {fileID: 4900000, guid: 4757463d300eabe409f330a8122a935c, type: 3}
+  - level: 2
+    time: 0
+    totalColor: 0
+    difficult: 0
+    levelData: {fileID: 4900000, guid: fc92371b4ce0fa94db3fecd1845e5e7f, type: 3}
+  - level: 3
+    time: 0
+    totalColor: 0
+    difficult: 0
+    levelData: {fileID: 4900000, guid: ea5310a2fcc5a87459061bb2757887d7, type: 3}
+  - level: 4
+    time: 0
+    totalColor: 0
+    difficult: 0
+    levelData: {fileID: 4900000, guid: 6dd643dc25c5b384b93a89c78ff7fe6a, type: 3}
+  - level: 5
+    time: 0
+    totalColor: 0
+    difficult: 0
+    levelData: {fileID: 4900000, guid: 2677a3fb0c7d7334f9fbd5030e880d09, type: 3}
+  - level: 6
+    time: 0
+    totalColor: 0
+    difficult: 0
+    levelData: {fileID: 4900000, guid: 30138aa7c05eb36429b821ef2332ce98, type: 3}
+  - level: 7
+    time: 0
+    totalColor: 0
+    difficult: 0
+    levelData: {fileID: 4900000, guid: 3f10899bfb22a104aa934c2122a4a670, type: 3}
+  - level: 8
+    time: 0
+    totalColor: 0
+    difficult: 0
+    levelData: {fileID: 4900000, guid: 87d76f3a0eab0904d9b46536f357e1da, type: 3}
+  - level: 9
+    time: 0
+    totalColor: 0
+    difficult: 0
+    levelData: {fileID: 4900000, guid: 65a42a02b8b08b949b75c15e9a655478, type: 3}
+  - level: 10
+    time: 0
+    totalColor: 0
+    difficult: 0
+    levelData: {fileID: 4900000, guid: 6587579352326214996673a979f85b28, type: 3}
+  - level: 11
+    time: 0
+    totalColor: 0
+    difficult: 0
+    levelData: {fileID: 4900000, guid: 48b5be61798508a478df8bfadd53ee3f, type: 3}
+  - level: 12
+    time: 0
+    totalColor: 0
+    difficult: 0
+    levelData: {fileID: 4900000, guid: 520e40f6ed0f8a447924ddbe17e42ffd, type: 3}
+  - level: 13
+    time: 0
+    totalColor: 0
+    difficult: 0
+    levelData: {fileID: 4900000, guid: 7e790919d57ba5f43916f8249e531ac1, type: 3}
+  - level: 14
+    time: 0
+    totalColor: 0
+    difficult: 0
+    levelData: {fileID: 4900000, guid: d9bf70aed7f7ea048b58c35a33e7c5a5, type: 3}
+  - level: 15
+    time: 0
+    totalColor: 0
+    difficult: 0
+    levelData: {fileID: 4900000, guid: b018d4f9e1417444a88cc12916415ba8, type: 3}
+  - level: 16
+    time: 0
+    totalColor: 0
+    difficult: 0
+    levelData: {fileID: 4900000, guid: 873c26a5caf901d4992c96ae4f67c132, type: 3}
+  - level: 17
+    time: 0
+    totalColor: 0
+    difficult: 0
+    levelData: {fileID: 4900000, guid: b97f39ccca953cf4b91f1950adde77a1, type: 3}
+  - level: 18
+    time: 0
+    totalColor: 0
+    difficult: 0
+    levelData: {fileID: 4900000, guid: c22b8a11f276e714c9a35a39dab23812, type: 3}
+  - level: 19
+    time: 0
+    totalColor: 0
+    difficult: 0
+    levelData: {fileID: 4900000, guid: 90d152ca3acc68348ae67ce707574ba8, type: 3}
+  - level: 20
+    time: 0
+    totalColor: 0
+    difficult: 0
+    levelData: {fileID: 4900000, guid: 9d50c0f100dee994e9d18b89887056b0, type: 3}
