@@ -20,11 +20,6 @@ public class GameManager : Singleton<GameManager>
         return machine.GetColor(index);
     }
 
-    public bool CheckColorIndex(int colorIndex, int indexIgnore)
-    {
-        return machine.IsHaveThisColor(colorIndex, indexIgnore);
-    }
-
     [Button]
     private void Test(int currentLevel)
     {
@@ -41,11 +36,11 @@ public class GameManager : Singleton<GameManager>
     {
         level = levelConvert;
 
-        for (int i = 0; i < level.colorInLevelIndex.Length; i++)
+        for (var i = 0; i < level.colorInLevelIndex.Length; i++)
         {
-            int oldColor = level.colorInLevelIndex[i];
-            int newColor = GetNewColor();
-            if(newColor == default)
+            var oldColor = level.colorInLevelIndex[i];
+            var newColor = GetNewColor();
+            if(newColor == -1)
                 continue;
 
             ChangeColorOther(newColor, oldColor);
@@ -70,10 +65,10 @@ public class GameManager : Singleton<GameManager>
 
     private int GetNewColor()
     {
-        int seen = 0;
-        int pick = -1;
+        var seen = 0;
+        var pick = -1;
 
-        for (int i = 0; i < levelDesign.colorInLevel.Count; i++)
+        for (int i = 0; i < levelDesign.colorDefault.Count; i++)
         {
             if (HaveThisColor(i, level.colorInLevelIndex) ||
                 HaveThisColor(i, level.colorShowFirstIndex) ||

@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
+
+public enum GamePlayMode
+{
+    HintMode,
+    NoHintMode
+}
 
 public partial class Machine : MonoBehaviour
 {
@@ -22,10 +29,15 @@ public partial class Machine : MonoBehaviour
 
     private LevelConfig levelConfig;
     private LevelConvert levelConvert;
+    
+    public GamePlayMode gamePlayMode;
+
+    [OdinSerialize]public ReactiveValue<bool> NeedHint = new();
 
     private void Awake()
     {
         InitMachine();
+        ChangeMode(gamePlayMode);
     }
 
     private void InitMachine()
@@ -46,6 +58,13 @@ public partial class Machine : MonoBehaviour
         }
 
         colorExpertLine.ResetColor();
+    }
+
+    [Button]
+    public void ChangeMode(GamePlayMode mode)
+    {
+        gamePlayMode = mode;
+        NeedHint.Value = gamePlayMode == GamePlayMode.HintMode;
     }
 
     public void CheckMouseClickDown()
@@ -151,11 +170,6 @@ public partial class Machine : MonoBehaviour
     public int GetColor(int index)
     {
         return colorExpertLine.GetColor(index);
-    }
-
-    public bool IsHaveThisColor(int colorIndex, int indexIgnore)
-    {
-        return colorLines[currentColorLineIndex].IsHaveThisColor(colorIndex, indexIgnore);
     }
     
     private void ChangeEnableButtonGamePlay(bool active)

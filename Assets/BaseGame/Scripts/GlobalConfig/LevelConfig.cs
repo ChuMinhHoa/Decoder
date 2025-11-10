@@ -16,9 +16,6 @@ public class LevelConfig
 public class LevelConvert
 {
     public int level;
-    public Color[] colorShowFirst;
-    public Color[] colorSecret;
-    public Color[] colorInLevel;
 
     public int[] colorShowFirstIndex;
     public int[] colorSecretIndex;

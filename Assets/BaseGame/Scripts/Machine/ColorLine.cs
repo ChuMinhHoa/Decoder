@@ -92,7 +92,7 @@ public class ColorLine : MonoBehaviour
         {
             if (colorSlots[i].ColorIndex == colorIndex && i != indexIgnore)
             {
-                Debug.Log(i + " " + colorIndex);
+                //Debug.Log(i + " " + colorIndex);
                 return true;
             }
         }

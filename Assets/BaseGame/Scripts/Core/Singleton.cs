@@ -1,7 +1,10 @@
 // csharp
 // File: `Assets/BaseGame/Scripts/Core/Singleton.cs`
+
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Object = UnityEngine.Object;
 
 public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
@@ -28,7 +31,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             {
                 if (_instance != null) return _instance;
 
-                _instance = FindObjectOfType<T>();
+                _instance = FindObjectOfType<T>(false);
 
                 if (_instance == null)
                 {
