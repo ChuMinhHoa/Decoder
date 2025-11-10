@@ -134,12 +134,12 @@ public partial class Machine : MonoBehaviour
         colorLines[currentColorLineIndex].NextSlot();
     }
 
-    public ColorHintType GetHintColorType(Color data, int index)
+    public ColorHintType GetHintColorType(int colorID, int index)
     {
         var findIndex = -1;
-        for (var i = 0; i < levelConvert.colorSecret.Length; i++)
+        for (var i = 0; i < levelConvert.colorSecretIndex.Length; i++)
         {
-            if (levelConvert.colorSecret[i] != data) continue;
+            if (levelConvert.colorSecretIndex[i] != colorID) continue;
             findIndex = i;
             break;
         }
@@ -148,7 +148,7 @@ public partial class Machine : MonoBehaviour
         return findIndex >= 0 ? ColorHintType.Right : ColorHintType.None;
     }
 
-    public Color GetColor(int index)
+    public int GetColor(int index)
     {
         return colorExpertLine.GetColor(index);
     }

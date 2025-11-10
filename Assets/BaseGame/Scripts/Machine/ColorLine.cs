@@ -42,7 +42,7 @@ public class ColorLine : MonoBehaviour
         return count == colorSlots.Length;
     }
 
-    public async UniTask InitData(Color[] dataColorFirstHint)
+    public async UniTask InitData(int[] dataColorFirstHint)
     {
         for (var i = 0; i < colorSlots.Length; i++)
         {
@@ -70,7 +70,7 @@ public class ColorLine : MonoBehaviour
         colorSlots[currentSlotIndex].ChangeColor(maxColor, change);
     }
 
-    public Color GetColor(int index)
+    public int GetColor(int index)
     {
         return colorSlots[index].data;
     }
@@ -79,7 +79,7 @@ public class ColorLine : MonoBehaviour
     {
         for (var i = 0; i < colorSlots.Length; i++)
         {
-            if (colorSlots[i].data == Color.clear)
+            if (colorSlots[i].data == -1)
                 return false;
         }
 

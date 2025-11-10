@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
-using System.Text;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEditor;
@@ -11,33 +9,34 @@ using Color = UnityEngine.Color;
 [CreateAssetMenu(menuName = "ScriptableObject/LevelDesign", fileName = "LevelDesign")]
 public class LevelDesign : ScriptableObject
 {
-    [HideInInspector]public List<Color> colorDefault;
+    public List<Color> colorDefault;
     public int level;
     public List<Color> colorShowFirst;
     public List<Color> colorSecret;
     public List<Color> colorInLevel;
 
     [Button]
+    private void LoadDefaultColors()
+    {
+        colorDefault = ColorGlobalConfig.Instance.colors;
+    }
+
+    [Button]
     private void SaveLevel()
     {
-        string ToHexList(List<Color> list)
-        {
-            if (list == null || list.Count == 0) return "[]";
-            var parts = new List<string>(list.Count);
-            foreach (var c in list)
-                parts.Add($"\"#{ColorUtility.ToHtmlStringRGB(c)}\"");
-            return "[" + string.Join(", ", parts) + "]";
-        }
+        // var levelProposal = levelDesignFromProposal?.GetLevelProposal(level);
+        // if (levelProposal == null) return;
 
         var dir = "Assets/Resources/Level";
         if (!Directory.Exists(dir))
             Directory.CreateDirectory(dir);
+        
         // maps to SecretCode
         LevelConvert levelConvert = new LevelConvert();
         levelConvert.level = level;
-        levelConvert.colorShowFirst = colorShowFirst.ToArray();
-        levelConvert.colorSecret = colorSecret.ToArray();
-        levelConvert.colorInLevel = colorInLevel.ToArray();
+        levelConvert.colorShowFirstIndex = GetColorIDs(colorShowFirst);
+        levelConvert.colorSecretIndex = GetColorIDs(colorSecret);
+        levelConvert.colorInLevelIndex = GetColorIDs(colorInLevel);
 
         var jsonObj = JsonUtility.ToJson(levelConvert, true);
         var json = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(jsonObj));
@@ -46,8 +45,30 @@ public class LevelDesign : ScriptableObject
         AssetDatabase.Refresh();
         Debug.Log($"Saved level file: {path}");
     }
+    
+    private int[] GetColorIDs(List<Color> colors)
+    {
+        List<int> colorIDs = new List<int>();
+        foreach (var color in colors)
+        {
+            int colorID = GetColorIndex(color);
+            colorIDs.Add(colorID);
+        }
+        return colorIDs.ToArray();
+    }
 
-    private LevelDesignFromProposal levelDesignFromProposal;
+    private int GetColorIndex(Color color)
+    {
+        for (var i = 0; i < colorDefault.Count; i++)
+        {
+            if (colorDefault[i] == color)
+                return i;
+        }
+
+        return -1;
+    }
+
+    public LevelDesignFromProposal levelDesignFromProposal;
 
     [Button(ButtonSizes.Large)]
     private void InitLevelProposal()
@@ -90,17 +111,20 @@ public class LevelDesign : ScriptableObject
         ApplyColor(levelProposal.colorInLevel, colorInLevel);
     }
 
-    private void ApplyColor(List<string> colorHex, List<Color> colors)
+    private void ApplyColor(List<int> colorID, List<Color> colors)
     {
         colors.Clear();
-        foreach (var hex in colorHex)
+        foreach (var id in colorID)
         {
-            var hexStr = hex.StartsWith("#") ? hex : $"#{hex}";
-            if (ColorUtility.TryParseHtmlString(hexStr, out var col))
-                colors.Add(col);
-            else
-                colors.Add(Color.clear);
+            colors.Add(GetColorByID(id));
         }
+    }
+
+    private Color GetColorByID(int colorID)
+    {
+        if (colorID < 0 || colorID >= colorDefault.Count)
+            return Color.clear;
+        return colorDefault[colorID];
     }
 
     [Button]
@@ -136,9 +160,9 @@ public class LevelDesignFromProposal
 public class LevelProposal
 {
     public int level;
-    public List<string> colorShowFirst;
-    public List<string> colorSecret;
-    public List<string> colorInLevel;
+    public List<int> colorShowFirst;
+    public List<int> colorSecret;
+    public List<int> colorInLevel;
 }
 
 #if UNITY_EDITOR

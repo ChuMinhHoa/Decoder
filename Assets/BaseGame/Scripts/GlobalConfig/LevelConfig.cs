@@ -19,6 +19,10 @@ public class LevelConvert
     public Color[] colorShowFirst;
     public Color[] colorSecret;
     public Color[] colorInLevel;
+
+    public int[] colorShowFirstIndex;
+    public int[] colorSecretIndex;
+    public int[] colorInLevelIndex;
 }
 
 public enum Difficult

@@ -61,11 +61,11 @@ public partial class Machine : MachineInitState.IHandler
         levelConvert = MyCache.DecodeBase64Json<LevelConvert>(data);
         GameManager.Instance.CreateNewColor(levelConvert);
         
-        await colorExpertLine.InitData(levelConvert.colorInLevel);
-        await colorLines[0].InitData(levelConvert.colorShowFirst);
+        await colorExpertLine.InitData(levelConvert.colorInLevelIndex);
+        await colorLines[0].InitData(levelConvert.colorShowFirstIndex);
         await colorLines[0].CheckHintColor();
         
-        maxColor = levelConvert.colorInLevel.Length;
+        maxColor = levelConvert.colorInLevelIndex.Length;
         colorLines[1].ChangeColorSlot(maxColor, 1);
         colorLines[1].SelectFirstSlot();
     }

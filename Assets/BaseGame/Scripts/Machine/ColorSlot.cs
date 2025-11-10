@@ -3,7 +3,7 @@ using Cysharp.Threading.Tasks;
 using LitMotion;
 using UnityEngine;
 
-public class ColorSlot : SlotBase<Color>
+public class ColorSlot : SlotBase<int>
 {
     [SerializeField] private Color colorDefault;
     [SerializeField] private Color colorWin;
@@ -11,6 +11,7 @@ public class ColorSlot : SlotBase<Color>
     [SerializeField] private GameObject objHighlight;
     [SerializeField] private SpriteRenderer spriteColor;
     [SerializeField] private SpriteRenderer sprHint;
+    [SerializeField] private SpriteRenderer sprColorGlow;
     [SerializeField] private Color[] colorHints;
     [SerializeField] private int index;
     [SerializeField] private int colorIndex = -1;
@@ -21,11 +22,16 @@ public class ColorSlot : SlotBase<Color>
         index = transform.GetSiblingIndex();
     }
 
-    public override void InitData(Color data)
+    public override void InitData(int data)
     {
         base.InitData(data);
-        spriteColor.color = data;
+        var color = ColorGlobalConfig.Instance.GetColorByIndex(data);
+        spriteColor.color = color;
+        sprColorGlow.color = color;
+        ActiveColorGlow(true);
     }
+
+    private void ActiveColorGlow(bool isActive) => sprColorGlow.gameObject.SetActive(isActive);
 
     public void DeSelect()
     {
@@ -44,9 +50,10 @@ public class ColorSlot : SlotBase<Color>
         spriteColor.color = colorDefault;
         sprHint.color = colorDefault;
         colorIndex = -1;
-        data = Color.clear;
+        data = -1;
         objHighlight.SetActive(false);
         sprHint.color = colorHints[0];
+        ActiveColorGlow(false);
     }
 
     private void SetColorHint(ColorHintType hintType)
@@ -83,23 +90,27 @@ public class ColorSlot : SlotBase<Color>
             colorIndex = maxColor - 1;
         else if (colorIndex == maxColor)
             colorIndex = 0;
-        var color = GameManager.Instance.GetColor(colorIndex);
-        InitData(color);
+        var colorID = GameManager.Instance.GetColor(colorIndex);
+        InitData(colorID);
     }
 
     public async UniTask AnimWin()
     {
         LMotion.Create(sprHint.color, colorWin, 0.15f).Bind(x => sprHint.color = x).AddTo(this);
+        LMotion.Create(sprColorGlow.color, colorWin, 0.15f).Bind(x => sprColorGlow.color = x).AddTo(this);
         await LMotion.Create(spriteColor.color, colorWin, 0.15f).Bind(x => spriteColor.color = x).AddTo(this);
         LMotion.Create(colorWin, colorDefault, 0.15f).Bind(x => sprHint.color = x).AddTo(this);
+        ActiveColorGlow(false);
         await LMotion.Create(colorWin, colorDefault, 0.15f).Bind(x => spriteColor.color = x).AddTo(this);
     }
 
     public async UniTask AnimLose()
     {
         LMotion.Create(sprHint.color, colorLose, 0.15f).Bind(x => sprHint.color = x).AddTo(this);
+        LMotion.Create(sprColorGlow.color, colorLose, 0.15f).Bind(x => sprColorGlow.color = x).AddTo(this);
         await LMotion.Create(spriteColor.color, colorLose, 0.15f).Bind(x => spriteColor.color = x).AddTo(this);
         LMotion.Create(colorLose, colorDefault, 0.15f).Bind(x => sprHint.color = x).AddTo(this);
+        ActiveColorGlow(false);
         await LMotion.Create(colorLose, colorDefault, 0.15f).Bind(x => spriteColor.color = x).AddTo(this);
     }
 }

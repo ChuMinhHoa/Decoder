@@ -10,12 +10,12 @@ public class GameManager : Singleton<GameManager>
 
     public LevelDesign levelDesign;
 
-    public ColorHintType GetHintColorType(Color data, int index)
+    public ColorHintType GetHintColorType(int colorID, int index)
     {
-        return machine.GetHintColorType(data, index);
+        return machine.GetHintColorType(colorID, index);
     }
 
-    public Color GetColor(int index)
+    public int GetColor(int index)
     {
         return machine.GetColor(index);
     }
@@ -41,70 +41,67 @@ public class GameManager : Singleton<GameManager>
     {
         level = levelConvert;
 
-        for (int i = 0; i < level.colorInLevel.Length; i++)
+        for (int i = 0; i < level.colorInLevelIndex.Length; i++)
         {
-            Color oldColor = level.colorInLevel[i];
-            Color newColor = GetNewColor();
+            int oldColor = level.colorInLevelIndex[i];
+            int newColor = GetNewColor();
             if(newColor == default)
                 continue;
 
             ChangeColorOther(newColor, oldColor);
-            level.colorInLevel[i] = newColor;
+            level.colorInLevelIndex[i] = newColor;
         }
     }
 
-    private void ChangeColorOther(Color newColor, Color oldColor)
+    private void ChangeColorOther(int newColorID, int oldColorID)
     {
-        ReplaceColorInArray(level.colorShowFirst, oldColor, newColor);
-        ReplaceColorInArray(level.colorSecret,    oldColor, newColor);
+        ReplaceColorInArray(level.colorShowFirstIndex, oldColorID, newColorID);
+        ReplaceColorInArray(level.colorSecretIndex,    oldColorID, newColorID);
     }
 
-    private static void ReplaceColorInArray(Color[] arr, Color oldColor, Color newColor)
+    private static void ReplaceColorInArray(int[] arr, int oldColor, int newColor)
     {
-        for (int i = 0; i < arr.Length; i++)
+        for (var i = 0; i < arr.Length; i++)
         {
             if (arr[i] == oldColor)
                 arr[i] = newColor;
         }
     }
 
-    private Color GetNewColor()
+    private int GetNewColor()
     {
-        var defaults = levelDesign.colorDefault;
         int seen = 0;
-        Color pick = default;
+        int pick = -1;
 
-        for (int i = 0; i < defaults.Count; i++)
+        for (int i = 0; i < levelDesign.colorInLevel.Count; i++)
         {
-            var c = defaults[i];
-            if (HaveThisColor(c, level.colorInLevel) ||
-                HaveThisColor(c, level.colorShowFirst) ||
-                HaveThisColor(c, level.colorSecret))
+            if (HaveThisColor(i, level.colorInLevelIndex) ||
+                HaveThisColor(i, level.colorShowFirstIndex) ||
+                HaveThisColor(i, level.colorSecretIndex))
                 continue;
 
             // Uniformly select 1 item from all valid candidates seen so far
             seen++;
             if (Random.Range(0, seen) == 0)
-                pick = c;
+                pick = i;
         }
 
         if (seen == 0)
         {
             Debug.Log("No available color");
-            return default;
+            return -1;
         }
 
         return pick;
     }
 
-    private bool HaveThisColor(Color color, Span<Color> colors)
+    private bool HaveThisColor(int colorIndex, Span<int> colors)
     {
         foreach (var c in colors)
         {
-            if (c == color)
+            if (c == colorIndex)
                 return true;
         }
         return false;
     }
-
 }
