@@ -44,9 +44,15 @@ public class ColorSlotGraphic : MonoBehaviour
     
     public void Select()
     {
-        motionHighlight = LMotion.Create(sprHint.color, colorHints[^1], .5f).WithLoops(-1).Bind(x => sprHint.color = x).AddTo(this);
-        motionHighlight2 = LMotion.Create(colorHints[^1], colorDefault, .5f).WithLoops(-1).Bind(x => sprHint.color = x).AddTo(this);
+        motionHighlight = LMotion.Create(sprHint.color, colorHints[^1], 1f)
+            .WithLoops(-1)
+            .Bind(x => sprHint.color = x)
+            .AddTo(this);
         
+        motionHighlight2 = LMotion.Create(colorHints[^1], colorDefault, 1f)
+            .WithLoops(-1)
+            .Bind(x => sprHint.color = x)
+            .AddTo(this);
     }
     
     public void DeSelect()
