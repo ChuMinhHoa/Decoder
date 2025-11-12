@@ -1137,30 +1137,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3876328367119584874, guid: 1d27facc4babe5e45bbe6daef986731f, type: 3}
-      propertyPath: 'colorSlots.Array.data[0]'
+    - target: {fileID: 4080589266628244013, guid: 1d27facc4babe5e45bbe6daef986731f, type: 3}
+      propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3876328367119584874, guid: 1d27facc4babe5e45bbe6daef986731f, type: 3}
-      propertyPath: 'colorSlots.Array.data[1]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3876328367119584874, guid: 1d27facc4babe5e45bbe6daef986731f, type: 3}
-      propertyPath: 'colorSlots.Array.data[2]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3876328367119584874, guid: 1d27facc4babe5e45bbe6daef986731f, type: 3}
-      propertyPath: 'colorSlots.Array.data[3]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3876328367119584874, guid: 1d27facc4babe5e45bbe6daef986731f, type: 3}
-      propertyPath: 'colorSlots.Array.data[4]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3876328367119584874, guid: 1d27facc4babe5e45bbe6daef986731f, type: 3}
-      propertyPath: 'colorSlots.Array.data[5]'
-      value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: 26a605b9a3a218a4cb6d93a3f48f27c5, type: 3}
     - target: {fileID: 6394790582474082966, guid: 1d27facc4babe5e45bbe6daef986731f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
