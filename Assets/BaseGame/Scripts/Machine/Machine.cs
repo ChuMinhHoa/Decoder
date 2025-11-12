@@ -16,10 +16,10 @@ public partial class Machine : MonoBehaviour
 {
     private StateMachine stateMachine;
     [SerializeField] private MachineAnim machineAnim;
-    [SerializeField] private BoxCollider2D btnNextSlot;
-    [SerializeField] private BoxCollider2D btnChangeColorLeft;
-    [SerializeField] private BoxCollider2D btnChangeColorRight;
-    [SerializeField] private BoxCollider2D btnCheck;
+    [SerializeField] private MachineButton btnNextSlot;
+    [SerializeField] private MachineButton btnChangeColorLeft;
+    [SerializeField] private MachineButton btnChangeColorRight;
+    [SerializeField] private MachineButton btnCheck;
     [SerializeField] private Collider2D btnPlay;
     [SerializeField] private ColorLine[] colorLines;
     [SerializeField] private ColorLine colorExpertLine;
@@ -46,6 +46,11 @@ public partial class Machine : MonoBehaviour
         stateMachine.RegisterState(MachineSleepState);
         stateMachine.Run();
         ChangeEnableButtonGamePlay(false);
+
+        btnNextSlot.SetActionCallBack(HandleNextSlotClick);
+        btnChangeColorLeft.SetActionCallBack(() => HandleChangeColorClick(-1));
+        btnChangeColorRight.SetActionCallBack(() => HandleChangeColorClick());
+        btnCheck.SetActionCallBack(() => _ = HandleCheckClick());
     }
     
     [Button]
@@ -76,30 +81,36 @@ public partial class Machine : MonoBehaviour
         }
         
         Vector2 worldPoint = CameraManager.Instance.mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        if (btnNextSlot != null && btnNextSlot.OverlapPoint(worldPoint))
-        {
-            HandleNextSlotClick();
-        }
-        
-        if (btnChangeColorLeft != null && btnChangeColorLeft.OverlapPoint(worldPoint))
-        {
-            HandleChangeColorClick(-1);
-        }
-        
-        if (btnChangeColorRight != null && btnChangeColorRight.OverlapPoint(worldPoint))
-        {
-            HandleChangeColorClick(1);
-        }
-        
-        if (btnCheck != null && btnCheck.OverlapPoint(worldPoint))
-        {
-            _ = HandleCheckClick();
-        }
+        if (btnNextSlot.IsOnClick(worldPoint)) btnNextSlot.OnButtonDown();
+
+        if (btnChangeColorLeft.IsOnClick(worldPoint)) btnChangeColorLeft.OnButtonDown();
+
+        if (btnChangeColorRight.IsOnClick(worldPoint)) btnChangeColorRight.OnButtonDown();
+
+        if (btnCheck.IsOnClick(worldPoint)) btnCheck.OnButtonDown();
         
         if (btnPlay != null && btnPlay.OverlapPoint(worldPoint))
         {
             _ = HandlePlayClick();
         }
+    }
+
+    public void CheckMouseClickUp()
+    {
+        if (UnityEngine.EventSystems.EventSystem.current != null &&
+            UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+        
+        Vector2 worldPoint = CameraManager.Instance.mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        if (btnNextSlot.IsOnClick(worldPoint)) _ = btnNextSlot.OnButtonUp();
+
+        if (btnChangeColorLeft.IsOnClick(worldPoint)) _ = btnChangeColorLeft.OnButtonUp();
+
+        if (btnChangeColorRight.IsOnClick(worldPoint)) _ = btnChangeColorRight.OnButtonUp();
+
+        if (btnCheck.IsOnClick(worldPoint)) _ = btnCheck.OnButtonUp();
     }
 
     private async UniTask HandlePlayClick()
@@ -174,10 +185,10 @@ public partial class Machine : MonoBehaviour
     
     private void ChangeEnableButtonGamePlay(bool active)
     {
-        btnCheck.enabled = active;
-        btnChangeColorLeft.enabled = active;
-        btnNextSlot.enabled = active;
-        btnChangeColorRight.enabled = active;
+        btnCheck.ChangeEnableButton(active);
+        btnChangeColorLeft.ChangeEnableButton(active);
+        btnNextSlot.ChangeEnableButton(active);
+        btnChangeColorRight.ChangeEnableButton(active);
     }
 
     private void ChangeEnableButtonPlay(bool active) => btnPlay.enabled = active;

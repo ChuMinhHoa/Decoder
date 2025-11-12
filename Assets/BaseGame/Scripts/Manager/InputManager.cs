@@ -14,10 +14,19 @@ public class InputManager : Singleton<InputManager>
     {
         this.UpdateAsObservable()
             .Where(_ => Input.GetMouseButtonDown(0))
-            .Subscribe(_ => MouseClickCallBack());
+            .Subscribe(_ => MouseClickDownCallBack());
+        this.UpdateAsObservable()
+            .Where(_=> Input.GetMouseButtonUp(0))
+            .Subscribe(_=> MouseClickUpCallBack());
     }
 
-    private void MouseClickCallBack()
+    private void MouseClickUpCallBack()
+    {
+        CameraManager.Instance.MouseClickCallBack();
+        mainMachine.CheckMouseClickUp();
+    }
+
+    private void MouseClickDownCallBack()
     {
         CameraManager.Instance.MouseClickCallBack();
         mainMachine.CheckMouseClickDown();

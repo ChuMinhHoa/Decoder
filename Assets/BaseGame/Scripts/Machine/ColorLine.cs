@@ -12,7 +12,7 @@ public class ColorLine : MonoBehaviour
     {
         currentSlotIndex = 0;
         lastSlotIndex = -1;
-        colorSlots[currentSlotIndex].Select();
+        colorSlots[currentSlotIndex].Select(false);
     }
 
     public void DeselectCurrentSlot()
@@ -22,12 +22,30 @@ public class ColorLine : MonoBehaviour
 
     public void NextSlot()
     {
+        var indexSlotSameColor = GetIndexSameColor(colorSlots[currentSlotIndex].ColorIndex);
         lastSlotIndex = currentSlotIndex;
-        currentSlotIndex++;
+        if (indexSlotSameColor != -1)
+            currentSlotIndex = indexSlotSameColor;
+        else 
+            currentSlotIndex++;
+        
         if (currentSlotIndex >= colorSlots.Length)
             currentSlotIndex = 0;
-        colorSlots[currentSlotIndex].Select();
+        colorSlots[currentSlotIndex].Select(indexSlotSameColor != -1);
         colorSlots[lastSlotIndex].DeSelect();
+    }
+
+    private int GetIndexSameColor(int colorIndex)
+    {
+        if (colorIndex == -1)
+            return -1;
+        for (var i = 0; i < colorSlots.Length; i++)
+        {
+            if (colorSlots[i].ColorIndex == colorIndex && i != currentSlotIndex)
+                return i;
+        }
+
+        return -1;
     }
 
     public async UniTask<bool> CheckHintColor(int timeDelay = 100)

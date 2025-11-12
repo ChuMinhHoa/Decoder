@@ -82,8 +82,10 @@ public partial class ColorSlot : SlotBase<int>
     }
 
 
-    public void Select()
+    public void Select(bool resetColor = false)
     {
+        if (resetColor)
+            colorSlotGraphic.Reset();
         colorSlotGraphic.Select();
     }
     

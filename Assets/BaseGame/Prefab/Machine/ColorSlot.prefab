@@ -160,7 +160,7 @@ MonoBehaviour:
   sprHint: {fileID: 896968389147468456}
   sprColorGlow: {fileID: 2024185637973027648}
   colorDefault: {r: 0.27450982, g: 0.27450982, b: 0.27450982, a: 1}
-  colorWin: {r: 0.97843254, g: 1, b: 0, a: 1}
+  colorWin: {r: 0.98455423, g: 1, b: 0.21226418, a: 1}
   colorLose: {r: 1, g: 0, b: 0, a: 1}
   colorHints:
   - {r: 0.27450982, g: 0.27450982, b: 0.27450982, a: 1}
