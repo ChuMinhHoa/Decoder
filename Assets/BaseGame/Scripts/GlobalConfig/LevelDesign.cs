@@ -2,19 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using UnityEngine;
 using UnityEditor;
 using Color = UnityEngine.Color;
 
 [CreateAssetMenu(menuName = "ScriptableObject/LevelDesign", fileName = "LevelDesign")]
-public class LevelDesign : ScriptableObject
+public class LevelDesign : GlobalConfig<LevelDesign>
 {
     public List<Color> colorDefault;
     public int level;
     public List<Color> colorShowFirst;
     public List<Color> colorSecret;
     public List<Color> colorInLevel;
-
+    public LevelConvert levelConvert;
     [Button]
     private void LoadDefaultColors()
     {
@@ -24,19 +25,18 @@ public class LevelDesign : ScriptableObject
     [Button]
     private void SaveLevel()
     {
-        // var levelProposal = levelDesignFromProposal?.GetLevelProposal(level);
-        // if (levelProposal == null) return;
 
         var dir = "Assets/Resources/Level";
         if (!Directory.Exists(dir))
             Directory.CreateDirectory(dir);
         
-        // maps to SecretCode
-        LevelConvert levelConvert = new LevelConvert();
-        levelConvert.level = level;
-        levelConvert.colorShowFirstIndex = GetColorIDs(colorShowFirst);
-        levelConvert.colorSecretIndex = GetColorIDs(colorSecret);
-        levelConvert.colorInLevelIndex = GetColorIDs(colorInLevel);
+        levelConvert = new LevelConvert
+        {
+            level = level,
+            colorShowFirstIndex = GetColorIDs(colorShowFirst),
+            colorSecretIndex = GetColorIDs(colorSecret),
+            colorInLevelIndex = GetColorIDs(colorInLevel)
+        };
 
         var jsonObj = JsonUtility.ToJson(levelConvert, true);
         var json = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(jsonObj));
@@ -190,6 +190,7 @@ public class LevelDesignEditor : Sirenix.OdinInspector.Editor.OdinEditor
         DrawColorRowWithRemove(colorSecret, "Color Secret", false, false);
         DrawColorGridWithRemove(colorInLevel, 8, "Color In Level", allowAddRemove: true); // dynamic already had +/- buttons
 
+        
         serializedObject.ApplyModifiedProperties();
     }
 
